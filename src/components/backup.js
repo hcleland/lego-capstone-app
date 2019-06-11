@@ -1,9 +1,3 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
-import Navbar from "./nav/Navbar";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
 class SignupModal extends React.Component {
     constructor(props) {
         super(props);
@@ -55,7 +49,6 @@ class SignupModal extends React.Component {
     render() {
         return (
             <div>
-                <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
                     <ModalBody>
