@@ -34,5 +34,9 @@ export default {
             },
             body: JSON.stringify(listItem)
         }).then(e => e.json())
+    },
+
+    getAllItems() {
+        return fetch(`${remoteURL}/buildItems`).then(e => e.json())
     }
 }

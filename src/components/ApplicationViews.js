@@ -16,7 +16,7 @@ class ApplicationViews extends Component {
         signup: [],
         users: [],
         searchResults: [],
-        buildList: []
+        buildItems: []
     }
 
     isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -60,6 +60,17 @@ class ApplicationViews extends Component {
             })
     };
 
+    componentDidMount() {
+        const newState = {};
+        ApiManager.getAllItems()
+            .then(items => {
+                console.log("items", items);
+                newState.buildItems = items
+            })
+            .then(() => this.setState(newState))
+    }
+
+
     render() {
         console.log("AppViews render");
         return (
@@ -74,7 +85,7 @@ class ApplicationViews extends Component {
                     return <SearchResults searchResults={this.state.searchResults} {...props} />
                 }} />
                 <Route exact path="/buildList" render={(props) => {
-                    return <BuildList buildList={this.state.buildList} addItem={this.addItem} saveBuildItem={this.saveBuildItem} {...props} />
+                    return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} />
                 }} />
                 {/* <Route path="/" render={props => {
                     if (this.isAuthenticated()) {
