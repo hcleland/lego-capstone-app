@@ -6,11 +6,13 @@ import {
     CardTitle, CardSubtitle,
 } from "reactstrap";
 import "./searchForm.css";
+import SearchDetail from "./SearchDetails"
 
 class Search extends Component {
     state = {
         searchResults: [],
-        searchInput: " "
+        searchInput: " ",
+        moc: [{ id: 1, color: { name: 'blue' } }]
     };
 
     // handleSearch(input) {
@@ -21,7 +23,7 @@ class Search extends Component {
     // };
 
     getSearchResults = () => {
-        ApiManager.search(this.state.searchInput)
+        ApiManager.getAlternate(this.state.searchInput)
             .then(results => {
                 this.setState({
                     searchResults: results.results
@@ -30,6 +32,14 @@ class Search extends Component {
                 console.log("first result", results.results)
                 // return searchResults
             });
+    };
+
+    getInventory = (mocId) => {
+        ApiManager.getInventory(mocId)
+            .then(results => {
+                console.log("results", results)
+                this.setState({ moc: results.results })
+            })
     };
 
 
@@ -50,6 +60,7 @@ class Search extends Component {
     //         .then(() => this.setState(newState))
     // }
     render() {
+        console.log("this.state.moc", this.state.moc)
         return (
             <React.Fragment>
                 <div className="searchForm">
@@ -73,7 +84,7 @@ class Search extends Component {
                                             <CardText>
                                                 <p>Designed by: {result.designer_name}</p>
                                                 <p>Number of bricks used: {result.num_parts}</p></CardText>
-                                            <Button>Details</Button>
+                                            <Button onClick={() => this.getInventory(result.set_num)}>Details</Button>
                                         </CardBody>
                                     </Card>
                                 </div>
@@ -81,6 +92,7 @@ class Search extends Component {
                         </section>
                     </div>
                 </div>
+                <SearchDetail searchResult={this.state.moc} />
             </React.Fragment>
         )
     }
