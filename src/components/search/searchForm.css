@@ -2,3 +2,9 @@
     margin: 40px;
     padding-right: 500px;
 }
+
+.divider{
+    width:30px;
+    height:auto;
+    display:inline-block;
+}
