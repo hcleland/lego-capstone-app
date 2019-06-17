@@ -18,3 +18,18 @@ img {
     /* padding-right: 500px;  */
 }
 
+.customBtnLanding {
+    background: red;
+    color: yellow;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-transform: uppercase; 
+    font-family: Arial Rounded MT Bold;
+  }
+
+  .customBtnLanding:hover {
+    background-color:#FFED00 !important;
+    color: red;
+}
+

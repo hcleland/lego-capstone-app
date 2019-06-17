@@ -34,11 +34,17 @@ class Navbar extends Component {
                         <div className="navbar-nav">
                             <a className="nav-item nav-link active" href="/">Home <span className="sr-only"></span></a>
                             <li className="nav-item">
+                                <Link className="nav-item nav-link active" to="/search">Search</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/signup">Sign Up</Link>
                             </li>
                             <Link to="/login" className="nav-item nav-link active" onClick={this.toggle}>Log In</Link>
+                            <li className="nav-item">
+                                <Link className="nav-item nav-link active" to="/buildList">Build List</Link>
+                            </li>
                             {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /> */}
-                            <a className="nav-item nav-link active" href="#">Log Out</a>
+                            <a className="nav-item nav-link" href="#">Log Out</a>
                         </div>
                     </div>
                 </nav>

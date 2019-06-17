@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ApiManager from '../../modules/ApiManager';
 import {
-    Form, Col, Button, Input, Label, CardDeck, Card, CardImg, CardText, CardBody,
+    Row, Col, Button, Input, Label, CardDeck, Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle,
 } from "reactstrap";
 import "./searchForm.css";
+import "./searchResults.css";
 import Search from "./Search"
 import { Link } from "react-router-dom";
 
@@ -35,23 +36,27 @@ class SearchResults extends Component {
                     <h1>Search Results here</h1>
                     <section className="searchResults">
                         {this.props.searchResults.map(result =>
-                            <div key={result.set_num} className="result_card">
-                                <Card>
-                                    <CardImg top width="100%" src={result.moc_img_url} alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle><h3>{result.name}</h3></CardTitle>
-                                        <CardSubtitle>{result.set_num}</CardSubtitle>
-                                        <CardText>
-                                            <p>Designed by: {result.designer_name}</p>
-                                            <p>Number of bricks used: {result.num_parts}</p></CardText>
-                                        <Button onClick={() => this.getInventory(result.set_num)} color="primary">Details</Button>
-                                        <div className="divider" />
-                                        {/* <Button onClick={() => this.getInventory(result.set_num)} color="danger">Add to Build List</Button> */}
-                                        <Button tag={Link} to="/buildList" color="danger">Add to Build List
+                            <div key={result.set_num}>
+                                <Row>
+                                    <Col sm="6">
+                                        <Card className="resultCard">
+                                            <CardImg top width="50%" src={result.moc_img_url} alt="Card image cap" />
+                                            <CardBody>
+                                                <CardTitle><h3>{result.name}</h3></CardTitle>
+                                                <CardSubtitle>{result.set_num}</CardSubtitle>
+                                                <CardText>
+                                                    <p>Designed by: {result.designer_name}</p>
+                                                    <p>Number of bricks used: {result.num_parts}</p></CardText>
+                                                <Button onClick={() => this.getInventory(result.set_num)} color="primary">Details</Button>
+                                                <div className="divider" />
+                                                {/* <Button onClick={() => this.getInventory(result.set_num)} color="danger">Add to Build List</Button> */}
+                                                <Button tag={Link} to="/buildList" color="danger">Add to Build List
 
                                         </Button>
-                                    </CardBody>
-                                </Card>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                </Row>
                             </div>
                         )}
                     </section>
