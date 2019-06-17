@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ApiManager from '../../modules/ApiManager';
 import {
-    Row, Col, Button, Input, Label, CardDeck, Card, CardImg, CardText, CardBody,
+    Row, Col, Button, Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle,
 } from "reactstrap";
 import "./searchForm.css";
 import "./searchResults.css";
-import Search from "./Search"
 import { Link } from "react-router-dom";
 
 class SearchResults extends Component {
@@ -18,20 +15,10 @@ class SearchResults extends Component {
     };
 
 
-
     render() {
         console.log("this.state.moc", this.state.moc)
         return (
             <React.Fragment>
-                {/* <div className="searchForm">
-                    <Form>
-                        <Label for="userName" sm={4}>Lego Set Number</Label>
-                        <Col sm={10}>
-                            <Input type="text" required name="userName" onChange={this.props.handleFieldChange} id="searchInput" placeholder="31088-1" />
-                        </Col>
-                        <Label for="userName" sm={4}><Button onClick={this.getSearchResults} color="success">Search</Button></Label>
-                    </Form>
-                    <div> */}
                 <div>
                     <h1>Search Results here</h1>
                     <section className="searchResults">
@@ -45,11 +32,13 @@ class SearchResults extends Component {
                                                 <CardTitle><h3>{result.name}</h3></CardTitle>
                                                 <CardSubtitle>{result.set_num}</CardSubtitle>
                                                 <CardText>
-                                                    <p>Designed by: {result.designer_name}</p>
-                                                    <p>Number of bricks used: {result.num_parts}</p></CardText>
-                                                <Button onClick={() => this.getInventory(result.set_num)} color="primary">Details</Button>
+                                                    Designed by: {result.designer_name}
+                                                </CardText>
+                                                <CardText>
+                                                    Number of bricks used: {result.num_parts}
+                                                </CardText>
+                                                <Button onClick={() => this.props.getDetails(result.set_num)} tag={Link} to="/searchDetails" color="primary">Details</Button>
                                                 <div className="divider" />
-                                                {/* <Button onClick={() => this.getInventory(result.set_num)} color="danger">Add to Build List</Button> */}
                                                 <Button tag={Link} to="/buildList" color="danger">Add to Build List
 
                                         </Button>

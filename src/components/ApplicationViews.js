@@ -1,21 +1,22 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 import React, { Component } from "react";
-import Navbar from "./nav/Navbar";
 import ApiManager from "../modules/ApiManager";
 import Landing from "./landing/Landing";
 import SignupForm from "./user/SignupForm";
 import LoginForm from "./user/LoginForm";
 import Search from "./search/Search";
 import SearchResults from "./search/SearchResults";
+import SearchDetails from "./search/SearchDetails";
 import BuildList from "./buildList/BuildList";
-import BuildItem from "./buildList/BuildItem";
+
 
 class ApplicationViews extends Component {
     state = {
         signup: [],
         users: [],
         searchResults: [],
+        searchDetails: [],
         buildItems: []
     }
 
@@ -32,6 +33,16 @@ class ApplicationViews extends Component {
                 // return searchResults
             });
     };
+
+    getDetails = (details) => {
+        ApiManager.getInventory(details)
+            .then(results => {
+                console.log(results)
+                this.setState({
+                    searchDetails: results.results
+                })
+            });
+    }
 
     saveBuildItem = evt => {
         evt.preventDefault();
@@ -82,7 +93,10 @@ class ApplicationViews extends Component {
                     return <Search getSearchResults={this.getSearchResults} {...props} />
                 }} />
                 <Route exact path="/searchResults" render={(props) => {
-                    return <SearchResults searchResults={this.state.searchResults} {...props} />
+                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} {...props} />
+                }} />
+                <Route exact path="/searchDetails" render={(props) => {
+                    return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
                 }} />
                 <Route exact path="/buildList" render={(props) => {
                     return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} />

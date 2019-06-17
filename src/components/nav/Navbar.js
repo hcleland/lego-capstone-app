@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Navbar.css"
-import { Modal } from 'reactstrap';
 
 class Navbar extends Component {
     constructor(props) {
@@ -27,9 +25,9 @@ class Navbar extends Component {
             <div id="navbar">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="/">App Logo</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
-                    </button>
+                    </button> */}
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
                             <a className="nav-item nav-link active" href="/">Home <span className="sr-only"></span></a>

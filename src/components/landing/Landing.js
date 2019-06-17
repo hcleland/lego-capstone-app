@@ -23,7 +23,7 @@ export default class Landing extends Component {
                                     {/* <Button color="primary" Link to={Search}>Start Building</Button> */}
                                 </p>
                             </Col>
-                            <Col xs="5"><img className="jumbotronPic" src="https://resources.workstate.com/hubfs/blog-images/cloud-shift/BuildingBlocksOfTheCloud.jpg?t=1509467179536&width=320&name=BuildingBlocksOfTheCloud.jpg"></img></Col>
+                            <Col xs="5"><img className="jumbotronPic" src="https://resources.workstate.com/hubfs/blog-images/cloud-shift/BuildingBlocksOfTheCloud.jpg?t=1509467179536&width=320&name=BuildingBlocksOfTheCloud.jpg" alt-text="lego bricks"></img></Col>
                         </Row>
                     </Container>
                     {/* <div className="searchDiv">

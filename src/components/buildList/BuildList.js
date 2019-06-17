@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import BuildItem from "./BuildItem";
-import { FormGroup, Label, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Button, } from 'reactstrap';
+import { FormGroup, Label, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Button, CardImg } from 'reactstrap';
 import { Link } from "react-router-dom";
 import "./BuildList.css"
 
@@ -9,12 +8,12 @@ class BuildList extends Component {
         return (
             <React.Fragment>
                 <div>
-                    <h1>User's Build List</h1>
+                    <h1 id="userHeader">User's Build List</h1>
                     <section className="buildList">
                         {this.props.buildItems.map(buildItem =>
                             <Card>
                                 <div key={buildItem.id} className="buildItem_card">
-                                    {/* <CardImg top width="100%" src={buildItem.} alt="Card image cap" /> */}
+                                    {/* <CardImg top width="100%" src={buildItem.moc_img_url} alt="Card image cap" /> */}
                                     <CardBody>
                                         <CardTitle><h3>{buildItem.mocName}</h3></CardTitle>
                                         <CardSubtitle>{buildItem.mocNumber}</CardSubtitle>

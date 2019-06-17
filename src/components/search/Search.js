@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ApiManager from '../../modules/ApiManager';
 import "./searchForm.css";
-import SearchResults from "./SearchResults"
 import {
-    Form, Col, Button, Input, Label, CardDeck, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle,
+    Form, Col, Button, Input, Label
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
