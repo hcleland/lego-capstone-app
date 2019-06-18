@@ -65,3 +65,43 @@ class SignupModal extends React.Component {
 }
 
 export default SignupModal;
+
+
+<React.Fragment>
+    <div>
+        <h1 id="userHeader">User's Build List</h1>
+        <section className="buildList">
+            {this.props.buildItems.map(buildItem =>
+                <Card>
+                    <div key={buildItem.id} className="buildItem_card">
+                        {/* <CardImg top width="100%" src={buildItem.moc_img_url} alt="Card image cap" /> */}
+                        <CardBody>
+                            <CardTitle><h3>{buildItem.mocName}</h3></CardTitle>
+                            <CardSubtitle>{buildItem.mocNumber}</CardSubtitle>
+                            <CardText>
+                                <p><a href={buildItem.mocURL} target="_blank">Instructions: </a></p>
+                                {/* <p>Number of bricks used: {result.num_parts}</p> */}
+                                <Label for="exampleText">Notes:</Label>
+                                <Input type="textarea" name="text" id="exampleText" />
+                            </CardText>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="checkbox" id="checkbox2" />{' '}
+                                    I Built This!
+                            </Label>
+                            </FormGroup>
+                            {/* <Button onClick={() => this.getInventory(result.set_num)} color="primary">Edit</Button> */}
+                            <p></p>
+                            <Button tag={Link} to="/buildList" className="customBtnEdit">Edit</Button>
+                            <div className="divider" />
+                            {/* <Button onClick={() => this.getInventory(result.set_num)} color="danger">Add to Build List</Button> */}
+                            <Button tag={Link} to="/buildList" className="customBtnDelete">Delete
+    
+                        </Button>
+                        </CardBody>
+                    </div>
+                </Card>
+            )}
+        </section>
+    </div>
+</React.Fragment> 

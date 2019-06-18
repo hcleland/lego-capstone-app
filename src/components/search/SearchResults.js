@@ -1,57 +1,42 @@
 import React, { Component } from 'react';
-import {
-    Row, Col, Button, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle,
-} from "reactstrap";
 import "./searchForm.css";
 import "./searchResults.css";
-import { Link } from "react-router-dom";
+import BuildItem from "../buildList/BuildItem";
 
 class SearchResults extends Component {
     state = {
-        // searchResults: [],
-        searchInput: " ",
-        moc: [{ id: 1, color: { name: 'blue' } }]
+        mocName: "",
+        mocNumber: "",
+        disabled: false
     };
+
+    addItem = evt => {
+        evt.preventDefault()
+        const newItem = {
+            id: this.props.match.params.buildItemId,
+            mocName: this.state.mocName,
+            mocNumber: this.state.mocNumber
+        };
+
+        this.props.addListItem(newItem)
+    }
+
+    // searchResult = this.props.searchResults.map((result) => {
+
+    //     return <BuildItem key={result.set_num} result={result} {...this.props} />
+    // })
 
 
     render() {
-        console.log("this.state.moc", this.state.moc)
         return (
-            <React.Fragment>
-                <div>
-                    <h1>Search Results here</h1>
-                    <section className="searchResults">
-                        {this.props.searchResults.map(result =>
-                            <div key={result.set_num}>
-                                <Row>
-                                    <Col sm="6">
-                                        <Card className="resultCard">
-                                            <CardImg top width="50%" src={result.moc_img_url} alt="Card image cap" />
-                                            <CardBody>
-                                                <CardTitle><h3>{result.name}</h3></CardTitle>
-                                                <CardSubtitle>{result.set_num}</CardSubtitle>
-                                                <CardText>
-                                                    Designed by: {result.designer_name}
-                                                </CardText>
-                                                <CardText>
-                                                    Number of bricks used: {result.num_parts}
-                                                </CardText>
-                                                <Button onClick={() => this.props.getDetails(result.set_num)} tag={Link} to="/searchDetails" color="primary">Details</Button>
-                                                <div className="divider" />
-                                                <Button tag={Link} to="/buildList" color="danger">Add to Build List
+            <div>
+                {
+                    this.props.searchResults.map((result) => {
+                        return <BuildItem key={result.set_num} result={result} {...this.props} />
+                    })
+                }
 
-                                        </Button>
-                                            </CardBody>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </div>
-                        )}
-                    </section>
-                </div >
-                {/* <SearchDetail searchResult={this.state.moc} /> */}
-            </React.Fragment>
+            </div>
         )
     }
 }

@@ -20,14 +20,14 @@ export default {
         }).then(e => e.json())
     },
     getAlternate(input) {
-        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}/alternates/?key=KEY&page=1&page_size=6`).then(e => e.json());
+        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}/alternates/?key=6cb2b6112998a633081603ceb2951b1a&page=1&page_size=6`).then(e => e.json());
     },
     getInventory(input) {
-        return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=KEY`).then(e => e.json());
+        return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=6cb2b6112998a633081603ceb2951b1a`).then(e => e.json());
     },
 
     addListItem(listItem) {
-        return fetch(`${remoteURL}/buildList`, {
+        return fetch(`${remoteURL}/buildItems`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,5 +38,15 @@ export default {
 
     getAllItems() {
         return fetch(`${remoteURL}/buildItems`).then(e => e.json())
+    },
+
+    updateListItem(updatedItem) {
+        return fetch(`${remoteURL}/buildItems/${updatedItem.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedItem)
+        }).then(data => data.json());
     }
 }

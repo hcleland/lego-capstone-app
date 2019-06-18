@@ -8,7 +8,8 @@ import LoginForm from "./user/LoginForm";
 import Search from "./search/Search";
 import SearchResults from "./search/SearchResults";
 import SearchDetails from "./search/SearchDetails";
-import BuildList from "./buildList/BuildList";
+import BuildList from "./buildList/ItemForm";
+import BuildItem from "./buildList/BuildItem";
 
 
 class ApplicationViews extends Component {
@@ -63,11 +64,22 @@ class ApplicationViews extends Component {
         return ApiManager.addListItem(item)
             .then(newItem => {
                 this.setState({
-                    buildList: item
+                    buildItems: newItem
                 });
                 console.log("new item", item);
                 // sessionStorage.setItem(
                 //     "userID", user.id
+            })
+    };
+
+    updateItem = (editedListObject) => {
+        return ApiManager.updateListItem(editedListObject)
+            .then(() => ApiManager.getAllItems())
+            .then(buildItems => {
+                this.props.history.push("/buildItems");
+                this.setState({
+                    buildItems: buildItems
+                })
             })
     };
 
@@ -93,14 +105,18 @@ class ApplicationViews extends Component {
                     return <Search getSearchResults={this.getSearchResults} {...props} />
                 }} />
                 <Route exact path="/searchResults" render={(props) => {
-                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} {...props} />
+                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} {...props} />
                 }} />
                 <Route exact path="/searchDetails" render={(props) => {
                     return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
                 }} />
-                <Route exact path="/buildList" render={(props) => {
-                    return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} />
+                <Route exact path="/buildItems" render={(props) => {
+                    return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} searchResults={this.state.searchResults} />
                 }} />
+                <Route exact path="/buildList/:buildItemId(\d+)/edit" render={props => {
+                    return <BuildItem {...props} buildItems={this.state.buildItems} updateItem={this.updateItem} />
+                }}
+                />
                 {/* <Route path="/" render={props => {
                     if (this.isAuthenticated()) {
                         return (
