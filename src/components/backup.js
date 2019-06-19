@@ -96,7 +96,7 @@ export default SignupModal;
                             <div className="divider" />
                             {/* <Button onClick={() => this.getInventory(result.set_num)} color="danger">Add to Build List</Button> */}
                             <Button tag={Link} to="/buildList" className="customBtnDelete">Delete
-    
+
                         </Button>
                         </CardBody>
                     </div>
@@ -104,4 +104,52 @@ export default SignupModal;
             )}
         </section>
     </div>
-</React.Fragment> 
+</React.Fragment>
+
+
+Cut & Pasted Wed at 1: 57
+
+    < section >
+    {
+        this.props.buildItems.map(buildItem =>
+            < Card key={buildItem.id} >
+                <div className="buildItem_card">
+                    {/* <CardImg top width="100%" src={buildItem.moc_img_url} alt="Card image cap" /> */}
+                    <CardBody>
+                        <CardImg top width="100%" src={buildItem.moc_img_url} alt="Card image cap" />
+                        <CardTitle><h3>{buildItem.name} </h3></CardTitle>
+                        <CardSubtitle>{buildItem.set_num}: <a href={buildItem.moc_url} target="_blank">Instructions</a></CardSubtitle>
+                        {/* <CardText>
+        <a href={buildItem.moc_url} target="_blank">Instructions</a>
+        </CardText>
+        <CardLink href={buildItem.moc_url}>Instructions</CardLink> */}
+                        <CardText>
+                            {/* <p>Number of bricks used: {result.num_parts}</p> */}
+                            <Label for="exampleText">Notes:</Label>
+                            <Input type="text" name="text" id="exampleText" onChange={this.handleFieldChange} defaultValue={this.state.textAreaValue} />
+                        </CardText>
+                        <FormGroup check>
+                            <Label check>
+                                <Input type="checkbox" id="checkbox2" />{' '}
+                                I Built This!
+    </Label>
+                            {/* <Button onClick={() => this.getInventory(result.set_num)} color="primary">Edit</Button> */}
+                        </FormGroup>
+                        <p></p>
+                        <Button tag={Link} to="/buildItems" className="customBtnEdit" onClick={this.updateExistingItem}>Save Notes</Button>
+
+                        <div className="divider" />
+                        <Button onClick={
+                            () => {
+                                this.setState(
+                                    { saveDisabled: true },
+                                    () => this.props.deleteItem(buildItem.id)
+                                )
+                            }
+                        }>Delete</Button>
+                    </CardBody>
+                </div>
+            </Card>
+        )
+    }
+</section >

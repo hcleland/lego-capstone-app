@@ -47,7 +47,7 @@ export default {
 
     updateListItem(updatedItem) {
         return fetch(`${remoteURL}/buildItems/${updatedItem.id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
