@@ -39,7 +39,7 @@ class Navbar extends Component {
                             </li>
                             <Link to="/login" className="nav-item nav-link active" onClick={this.toggle}>Log In</Link>
                             <li className="nav-item">
-                                <Link className="nav-item nav-link active" to="/buildList">Build List</Link>
+                                <Link className="nav-item nav-link active" to="/buildItems">Build List</Link>
                             </li>
                             {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /> */}
                             <a className="nav-item nav-link" href="#">Log Out</a>

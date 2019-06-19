@@ -8,7 +8,7 @@ import LoginForm from "./user/LoginForm";
 import Search from "./search/Search";
 import SearchResults from "./search/SearchResults";
 import SearchDetails from "./search/SearchDetails";
-import BuildList from "./buildList/ItemForm";
+import BuildList from "./buildList/BuildList";
 import BuildItem from "./buildList/BuildItem";
 
 
@@ -17,8 +17,8 @@ class ApplicationViews extends Component {
         signup: [],
         users: [],
         searchResults: [],
-        searchDetails: [],
-        buildItems: []
+        searchDetails: []
+        // buildItems: []
     }
 
     isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -43,7 +43,17 @@ class ApplicationViews extends Component {
                     searchDetails: results.results
                 })
             });
-    }
+    };
+
+    getBuildItems = () => {
+        ApiManager.getAllItems()
+            .then(results => {
+                this.setState({
+                    buildItems: results
+                });
+                console.log("results", results);
+            });
+    };
 
     saveBuildItem = evt => {
         evt.preventDefault();
@@ -83,19 +93,19 @@ class ApplicationViews extends Component {
             })
     };
 
-    componentDidMount() {
-        const newState = {};
-        ApiManager.getAllItems()
-            .then(items => {
-                console.log("items", items);
-                newState.buildItems = items
-            })
-            .then(() => this.setState(newState))
-    }
+    // componentDidMount() {
+    //     const newState = {};
+    //     ApiManager.getAllItems()
+    //         .then(items => {
+    //             console.log("items", items);
+    //             newState.buildItems = items
+    //         })
+    //         .then(() => this.setState(newState))
+    // }
 
 
     render() {
-        console.log("AppViews render");
+        // console.log("AppViews render");
         return (
             <React.Fragment>
                 <Route exact path="/" component={Landing} />
@@ -110,11 +120,15 @@ class ApplicationViews extends Component {
                 <Route exact path="/searchDetails" render={(props) => {
                     return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
                 }} />
-                <Route exact path="/buildItems" render={(props) => {
+                {/* <Route exact path="/buildItems" render={(props) => {
                     return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} searchResults={this.state.searchResults} />
-                }} />
+                }} /> */}
                 <Route exact path="/buildList/:buildItemId(\d+)/edit" render={props => {
                     return <BuildItem {...props} buildItems={this.state.buildItems} updateItem={this.updateItem} />
+                }}
+                />
+                <Route exact path="/buildItems" render={props => {
+                    return <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} />
                 }}
                 />
                 {/* <Route path="/" render={props => {
