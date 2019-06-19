@@ -17,8 +17,8 @@ class ApplicationViews extends Component {
         signup: [],
         users: [],
         searchResults: [],
-        searchDetails: []
-        // buildItems: []
+        searchDetails: [],
+        buildItems: []
     }
 
     isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -93,15 +93,29 @@ class ApplicationViews extends Component {
             })
     };
 
-    // componentDidMount() {
-    //     const newState = {};
-    //     ApiManager.getAllItems()
-    //         .then(items => {
-    //             console.log("items", items);
-    //             newState.buildItems = items
-    //         })
-    //         .then(() => this.setState(newState))
-    // }
+    deleteItem = (id) => {
+        const newState = {};
+        ApiManager.deleteListItem(id)
+            .then(ApiManager.getAllItems)
+            .then(buildItems => {
+                console.log("build Items", buildItems);
+                newState.buildItems = buildItems
+            })
+            .then(() => {
+                this.props.history.push("/buildItems")
+                this.setState(newState)
+            })
+    }
+
+    componentDidMount() {
+        const newState = {};
+        ApiManager.getAllItems()
+            .then(items => {
+                console.log("items", items);
+                newState.buildItems = items
+            })
+            .then(() => this.setState(newState))
+    }
 
 
     render() {
@@ -115,22 +129,28 @@ class ApplicationViews extends Component {
                     return <Search getSearchResults={this.getSearchResults} {...props} />
                 }} />
                 <Route exact path="/searchResults" render={(props) => {
-                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} {...props} />
+                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} {...props} />
                 }} />
                 <Route exact path="/searchDetails" render={(props) => {
                     return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
                 }} />
-                {/* <Route exact path="/buildItems" render={(props) => {
-                    return <BuildList buildItems={this.state.buildItems} addItem={this.addItem} saveBuildItem={this.saveBuildItem} getAllItems={this.getAllItems} {...props} searchResults={this.state.searchResults} />
-                }} /> */}
-                <Route exact path="/buildList/:buildItemId(\d+)/edit" render={props => {
+                <Route exact path="/buildItems" render={props => {
+                    return <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} deleteItem={this.deleteItem} />
+                }}
+                />
+                <Route exact path="/buildItems/:buildItemId(\d+)/edit" render={props => {
                     return <BuildItem {...props} buildItems={this.state.buildItems} updateItem={this.updateItem} />
                 }}
                 />
-                <Route exact path="/buildItems" render={props => {
-                    return <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} />
-                }}
-                />
+                <Route exact path="/buildItems/:buildItemId(\d+)" render={(props) => {
+                    // Find the animal with the id of the route parameter
+                    let buildItem = this.state.buildItems.find(buildItem =>
+                        buildItem.id === parseInt(props.match.params.buildItemId)
+                    )
+
+                    return <BuildList buildItem={buildItem}
+                        deleteItem={this.deleteItem} />
+                }} />
                 {/* <Route path="/" render={props => {
                     if (this.isAuthenticated()) {
                         return (

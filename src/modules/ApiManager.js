@@ -26,6 +26,14 @@ export default {
         return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=6cb2b6112998a633081603ceb2951b1a`).then(e => e.json());
     },
 
+    getOneItem(id) {
+        return fetch(`${remoteURL}/buildItems/${id}`).then(e => e.json())
+    },
+
+    getAllItems() {
+        return fetch(`${remoteURL}/buildItems`).then(e => e.json())
+    },
+
     addListItem(listItem) {
         return fetch(`${remoteURL}/buildItems`, {
             method: "POST",
@@ -36,9 +44,6 @@ export default {
         }).then(e => e.json())
     },
 
-    getAllItems() {
-        return fetch(`${remoteURL}/buildItems`).then(e => e.json())
-    },
 
     updateListItem(updatedItem) {
         return fetch(`${remoteURL}/buildItems/${updatedItem.id}`, {
@@ -48,5 +53,14 @@ export default {
             },
             body: JSON.stringify(updatedItem)
         }).then(data => data.json());
+    },
+
+    deleteListItem(id) {
+        return fetch(`${remoteURL}/buildItems/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(e => e.json())
     }
 }

@@ -12,6 +12,7 @@ class BuildItem extends Component {
     handleAdd = result => {
         this.setState({ disabled: true })
         ApiManager.addListItem(result)
+            .then(this.props.getBuildItems)
     }
 
     // handleClick = (event) => {
