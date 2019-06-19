@@ -20,10 +20,10 @@ export default {
         }).then(e => e.json())
     },
     getAlternate(input) {
-        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}/alternates/?key=6cb2b6112998a633081603ceb2951b1a&page=1&page_size=6`).then(e => e.json());
+        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}/alternates/?key=KEY&page=1&page_size=6`).then(e => e.json());
     },
     getInventory(input) {
-        return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=6cb2b6112998a633081603ceb2951b1a`).then(e => e.json());
+        return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=KEY`).then(e => e.json());
     },
 
     getOneItem(id) {
@@ -47,7 +47,7 @@ export default {
 
     updateListItem(updatedItem) {
         return fetch(`${remoteURL}/buildItems/${updatedItem.id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },

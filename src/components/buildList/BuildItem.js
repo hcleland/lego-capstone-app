@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import ApiManager from "../../modules/ApiManager"
 
+
 class BuildItem extends Component {
 
     state = {
-        saveDisabled: false
+        saveDisabled: false,
     }
 
     handleAdd = result => {
@@ -14,6 +15,7 @@ class BuildItem extends Component {
         ApiManager.addListItem(result)
             .then(this.props.getBuildItems)
     }
+
 
     // handleClick = (event) => {
     //     console.log("click", event, this.props.buildItem.id);

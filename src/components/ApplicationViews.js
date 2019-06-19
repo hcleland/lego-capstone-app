@@ -10,6 +10,7 @@ import SearchResults from "./search/SearchResults";
 import SearchDetails from "./search/SearchDetails";
 import BuildList from "./buildList/BuildList";
 import BuildItem from "./buildList/BuildItem";
+import ListItem from "./buildList/ListItem";
 
 
 class ApplicationViews extends Component {
@@ -105,7 +106,19 @@ class ApplicationViews extends Component {
                 this.props.history.push("/buildItems")
                 this.setState(newState)
             })
-    }
+    };
+
+    updateItem = (updatedItem) => {
+        console.log(updatedItem.id)
+        return ApiManager.updateListItem(updatedItem)
+            .then(() => ApiManager.getAllItems())
+            .then(buildItems => {
+                this.props.history.push("/buildItems");
+                this.setState({
+                    buildItems: buildItems
+                })
+            })
+    };
 
     componentDidMount() {
         const newState = {};
@@ -134,8 +147,13 @@ class ApplicationViews extends Component {
                 <Route exact path="/searchDetails" render={(props) => {
                     return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
                 }} />
-                <Route exact path="/buildItems" render={props => {
-                    return <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} deleteItem={this.deleteItem} />
+                <Route path="/buildItems" render={props => {
+                    return (
+                        <>
+                            <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} deleteItem={this.deleteItem} updateItem={this.updateItem} />
+                            {/* <ListItem {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} /> */}
+                        </>
+                    )
                 }}
                 />
                 <Route exact path="/buildItems/:buildItemId(\d+)/edit" render={props => {
@@ -149,7 +167,7 @@ class ApplicationViews extends Component {
                     )
 
                     return <BuildList buildItem={buildItem}
-                        deleteItem={this.deleteItem} />
+                        deleteItem={this.deleteItem} updateItem={this.updateItem} />
                 }} />
                 {/* <Route path="/" render={props => {
                     if (this.isAuthenticated()) {
