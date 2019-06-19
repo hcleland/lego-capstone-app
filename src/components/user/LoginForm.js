@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ApiManager from '../../modules/ApiManager';
 import "./loginform.css"
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class LoginForm extends Component {
     state = {

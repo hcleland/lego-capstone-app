@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
-import ApiManager from '../../modules/ApiManager';
+import {
+    Row, Col, Container, Media,
+} from "reactstrap";
 
-class SearchDetail extends Component {
+class SearchDetails extends Component {
 
     render() {
-        console.log("this.props.searchResult", this.props.searchResult)
         return (
             <>
-                <p>Hello</p>
-                {this.props.searchResult.map(brick => (
-                    <div key={brick.id}>
-                        <p>Id: {brick.id} - color: {brick.color.name}</p>
-                    </div>
+                {this.props.searchDetails.map(brick => (
+                    // <div key={brick.id}>
+                    //     <img src={brick.part.part_img_url} alt-text="individual lego brick" />
+                    //     <p>{brick.part.part_img_url}</p>
+                    // </div>
+                    <Container key={brick.id}>
+                        <Row>
+                            <Col sm={{ size: 'auto' }}>
+                                <Media src={brick.part.part_img_url} alt="individual lego brick" rounded />
+                            </Col>
+                        </Row>
+                    </Container>
+                    // <div key={brick.id}>
+                    //     <img src="{brick.part.part_img_url}"></img>
+                    // </div>
                 ))}
             </>
         )
     }
 }
-export default SearchDetail
+export default SearchDetails

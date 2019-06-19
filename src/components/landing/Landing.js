@@ -19,11 +19,11 @@ export default class Landing extends Component {
                                 <hr className="my-2" />
                                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                                 <p className="lead">
-                                    <Button tag={Link} to="/search" color="primary">Start Building</Button>
+                                    <Button tag={Link} to="/search" className="customBtnLanding">Start Building</Button>
                                     {/* <Button color="primary" Link to={Search}>Start Building</Button> */}
                                 </p>
                             </Col>
-                            <Col xs="5"><img className="jumbotronPic" src="https://resources.workstate.com/hubfs/blog-images/cloud-shift/BuildingBlocksOfTheCloud.jpg?t=1509467179536&width=320&name=BuildingBlocksOfTheCloud.jpg"></img></Col>
+                            <Col xs="5"><img className="jumbotronPic" src="https://resources.workstate.com/hubfs/blog-images/cloud-shift/BuildingBlocksOfTheCloud.jpg?t=1509467179536&width=320&name=BuildingBlocksOfTheCloud.jpg" alt-text="lego bricks"></img></Col>
                         </Row>
                     </Container>
                     {/* <div className="searchDiv">

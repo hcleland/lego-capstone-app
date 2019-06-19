@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ApiManager from '../../modules/ApiManager';
 import "./signupform.css"
 
