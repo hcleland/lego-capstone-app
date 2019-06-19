@@ -39,7 +39,7 @@ class ListItem extends Component {
     }
 
     render() {
-
+        console.log(this.state)
         return (
             <>
                 < Card key={this.props.buildItem.id} >
@@ -56,7 +56,7 @@ class ListItem extends Component {
                             <CardText>
                                 {/* <p>Number of bricks used: {result.num_parts}</p> */}
                                 <Label for="exampleText">Notes:</Label>
-                                <Input type="text" name="text" id="exampleText" onChange={this.handleFieldChange} value={this.textAreaValue} />
+                                <Input type="text" name="text" id="textAreaValue" onChange={this.handleFieldChange} defaultValue={this.props.buildItem.textAreaValue} />
                             </CardText>
                             <FormGroup check>
                                 <Label check>
