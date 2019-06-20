@@ -11,6 +11,7 @@ import SearchDetails from "./search/SearchDetails";
 import BuildList from "./buildList/BuildList";
 import BuildItem from "./buildList/BuildItem";
 import ListItem from "./buildList/ListItem";
+import BrickPic from "./search/BrickPic";
 
 
 class ApplicationViews extends Component {
@@ -145,7 +146,11 @@ class ApplicationViews extends Component {
                     return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} {...props} />
                 }} />
                 <Route exact path="/searchDetails" render={(props) => {
-                    return <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
+                    return (
+                        <>
+                            <SearchDetails searchDetails={this.state.searchDetails} getDetails={this.getDetails} {...props} />
+                        </>
+                    )
                 }} />
                 <Route path="/buildItems" render={props => {
                     return (
