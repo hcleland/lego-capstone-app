@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./searchForm.css";
 import "./searchResults.css";
 import BuildItem from "../buildList/BuildItem";
+import { Form, Label, Col, Input, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class SearchResults extends Component {
     state = {
@@ -29,14 +31,24 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div>
-                {
-                    this.props.searchResults.map((result) => {
-                        return <BuildItem key={result.set_num} result={result} {...this.props} />
-                    })
-                }
+            <Form>
+                <div className="searchForm">
+                    <Label for="userName" sm={4}>Lego Set Number</Label>
+                    <Col sm={10}>
+                        <Input type="text" required name="userName" onChange={this.handleFieldChange} id="searchInput" placeholder="31088-1" />
+                    </Col>
+                    {/* <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label> */}
+                    <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} tag={Link} to="/searchResults" color="success">Search</Button></Label>
+                </div>
+                <div>
+                    {
+                        this.props.searchResults.map((result) => {
+                            return <BuildItem key={result.set_num} result={result} {...this.props} />
+                        })
+                    }
 
-            </div>
+                </div>
+            </Form>
         )
     }
 }
