@@ -10,13 +10,18 @@ class BuildList extends Component {
     render() {
 
         return (
-            < section >
-                {
-                    this.props.buildItems.map((buildItem) => {
-                        return <ListItem key={buildItem.id} buildItem={buildItem} {...this.props} />
-                    })
-                }
-            </section >
+            <div>
+                <h1>My Build List</h1>
+                <div className="buildList">
+                    < section >
+                        {
+                            this.props.buildItems.map((buildItem) => {
+                                return <ListItem key={buildItem.id} buildItem={buildItem} {...this.props} />
+                            })
+                        }
+                    </section >
+                </div>
+            </div>
         )
     }
 }

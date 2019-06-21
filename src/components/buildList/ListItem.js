@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Label, Input, FormGroup, Button, CardImg } from "reactstrap";
 import { Link } from 'react-router-dom';
+import "./BuildList.css";
 
 class ListItem extends Component {
 
@@ -43,7 +44,7 @@ class ListItem extends Component {
         return (
             <>
                 < Card key={this.props.buildItem.id} >
-                    <div className="buildItem_card">
+                    <div className="buildItemCard">
                         {/* <CardImg top width="100%" src={buildItem.moc_img_url} alt="Card image cap" /> */}
                         <CardBody>
                             <CardImg top width="100%" src={this.props.buildItem.moc_img_url} alt="Card image cap" />
@@ -56,7 +57,7 @@ class ListItem extends Component {
                             <CardText>
                                 {/* <p>Number of bricks used: {result.num_parts}</p> */}
                                 <Label for="exampleText">Notes:</Label>
-                                <Input type="text" name="text" id="textAreaValue" onChange={this.handleFieldChange} defaultValue={this.props.buildItem.textAreaValue} />
+                                <Input type="textarea" name="text" id="textAreaValue" onChange={this.handleFieldChange} defaultValue={this.props.buildItem.textAreaValue} />
                             </CardText>
                             <FormGroup check>
                                 <Label check>
@@ -80,6 +81,7 @@ class ListItem extends Component {
                         </CardBody>
                     </div>
                 </Card>
+                <p></p>
             </>
         )
     }
