@@ -15,7 +15,7 @@ export default class Landing extends Component {
                         <Row>
                             <Col xs="7">
                                 <h1 className="display-3">ReBUILD</h1>
-                                <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
+                                <p className="lead">With ReBUILD you can search for NEW creations to build with the bricks from a lego set you already have.</p>
                                 <hr className="my-2" />
                                 <p></p>
                                 <p className="lead">
