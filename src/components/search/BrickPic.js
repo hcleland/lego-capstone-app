@@ -17,7 +17,6 @@ class BrickPic extends Component {
                     //         </Col>
                     //     </Row>
                     // </Container>
-                    // <h2>{this.props.brick.set_num}</h2>
                     <Col xs="auto"><img src={this.props.brick.part.part_img_url} />
                         <p>Quantity Needed: {this.props.brick.quantity}</p>
                     </Col>

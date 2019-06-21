@@ -1,15 +1,30 @@
+.landing {
+    margin: 40px;
+    padding-right: 50px;
+}
+
 .jumbotron {
     /* margin: 40px;
     padding-right: 500px; */
     background-color: white;
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
+    background-color: white;
+    background-image: url("https://resources.workstate.com/hubfs/blog-images/cloud-shift/BuildingBlocksOfTheCloud.jpg?t=1509467179536&width=320&name=BuildingBlocksOfTheCloud.jpg");
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 450px;
 }
 
-img {
+
+.jumbotronPic {
+
+}
+
+/* img .jumbotronPic {
     width: 100%;
     height: auto;
-    /* border: 3px solid #73AD21; */
-}
+    border: 3px solid #73AD21;
+} */
 
 .searchDiv {
     margin-top: 10px;

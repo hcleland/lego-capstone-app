@@ -9,6 +9,7 @@ class SearchDetails extends Component {
         return (
             <>
                 <Container>
+                    {/* <Row><h2>{this.props.searchDetails.brick.set_num}</h2></Row> */}
                     <Row>
                         {this.props.searchDetails.map((brick) => {
                             return <BrickPic key={brick.part.part_img_url} brick={brick} {...this.props} />
