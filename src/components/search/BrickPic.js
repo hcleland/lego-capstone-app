@@ -8,7 +8,7 @@ class BrickPic extends Component {
 
         return (
 
-            <div>
+            <div className="brickPic">
                 {
                     // <Container key={brick.id}>
                     //     <Row>

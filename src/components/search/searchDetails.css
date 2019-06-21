@@ -1,4 +1,13 @@
+.brickPic {
+    border: 1px solid orange;
+    margin: 1.5px;
+    padding-top: 10px;
+}
 
+.brickInventory {
+    margin: 20px;
+    /* padding-right: 500px; */
+}
 
 
 

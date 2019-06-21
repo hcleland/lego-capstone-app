@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import ApiManager from "../../modules/ApiManager"
+import "./BuildList.css"
 
 
 class BuildItem extends Component {
@@ -28,13 +29,13 @@ class BuildItem extends Component {
     render() {
         return (
             <React.Fragment>
-                <div>
+                <div className="buildItem">
                     {/* <h1>Search Results here</h1> */}
                     <section className="searchResults">
                         {/* {this.props.searchResults.map(result => */}
                         <div key={this.props.result.set_num}>
                             <Row>
-                                <Col sm="6">
+                                <Col sm="8">
                                     <Card className="resultCard">
                                         <CardImg top width="50%" src={this.props.result.moc_img_url} alt="Card image cap" />
                                         <CardBody>
@@ -51,6 +52,7 @@ class BuildItem extends Component {
                                             <Button disabled={this.state.disabled} onClick={() => this.handleAdd(this.props.result)} color="danger">{(this.state.disabled) ? "Added to List" : "Add to List"}</Button>
                                         </CardBody>
                                     </Card>
+                                    <p></p>
                                 </Col>
                             </Row>
                         </div>

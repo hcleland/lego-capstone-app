@@ -20,7 +20,7 @@ export default {
         }).then(e => e.json())
     },
     getAlternate(input) {
-        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}/alternates/?key=KEY&page=1&page_size=6`).then(e => e.json());
+        return fetch(`https://rebrickable.com/api/v3/lego/sets/${input}-1/alternates/?key=KEY&page=1&page_size=6`).then(e => e.json());
     },
     getInventory(input) {
         return fetch(`https://rebrickable.com/api/v3/lego/mocs/${input}/parts/?key=KEY`).then(e => e.json());

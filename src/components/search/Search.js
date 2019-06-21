@@ -38,9 +38,9 @@ class Search extends Component {
 
                 <Form>
                     <div className="searchForm">
-                        <Label for="userName" sm={4}>Lego Set Number</Label>
+                        <Label for="inputSet" sm={4}>Lego Set Number</Label>
                         <Col sm={10}>
-                            <Input type="text" required name="userName" onChange={this.handleFieldChange} id="searchInput" placeholder="31088-1" />
+                            <Input type="text" required name="inputSet" onChange={this.handleFieldChange} id="searchInput" placeholder="" />
                         </Col>
                         {/* <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label> */}
                         <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} tag={Link} to="/searchResults" color="success">Search</Button></Label>

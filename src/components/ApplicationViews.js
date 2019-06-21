@@ -32,8 +32,6 @@ class ApplicationViews extends Component {
                     searchResults: results.results
                 });
                 console.log("SEARCH RESULTS", results);
-                // console.log("first result", results.results)
-                // return searchResults
             });
     };
 

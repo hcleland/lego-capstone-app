@@ -1,11 +1,16 @@
 div .buildList {
-    margin: 40px;
-    padding-right: 200px;
-    padding-left: 200px;
-    /* opacity: 0.3; */
+  margin: 20px;
+  padding-right: 200px;
+  padding-left: 200px;
     background-image: url("lego-background.gif")
 }
 
+div .buildItem {
+  /* padding-right: 100px; */
+  /* padding-top: 50px; */
+  padding-left: 300px;
+  align-content: center
+}
 
 .customBtnEdit {
     background: white;
