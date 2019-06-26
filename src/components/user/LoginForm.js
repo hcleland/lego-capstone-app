@@ -22,13 +22,15 @@ export default class LoginForm extends Component {
         ApiManager.get(this.state.userName).then(result => {
             console.log("result", result);
             if (result.length > 0) {
-                sessionStorage.setItem(
-                    "credentials",
-                    JSON.stringify({
-                        userName: this.state.userName,
-                        password: this.state.password
-                    })
-                )
+                this.props.setUser(result[0])
+                // sessionStorage.setItem(
+                //     "credentials",
+                //     JSON.stringify({
+                //         id: result[0].id,
+                //         userName: result[0].userName,
+                //         password: result[0].password
+                //     })
+                // )
                 this.props.history.push("/");
             } else {
                 alert("Please sign up");

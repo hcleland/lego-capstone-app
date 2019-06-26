@@ -20,7 +20,8 @@ class ApplicationViews extends Component {
         users: [],
         searchResults: [],
         searchDetails: [],
-        buildItems: []
+        buildItems: [],
+        currentUser: {}
     }
 
     isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -46,12 +47,14 @@ class ApplicationViews extends Component {
     };
 
     getBuildItems = () => {
-        ApiManager.getAllItems()
+        const user = JSON.parse(sessionStorage.getItem("credentials"))
+        ApiManager.getAllItemsById(user.id)
             .then(results => {
                 this.setState({
                     buildItems: results
                 });
                 console.log("results", results);
+                console.log("current user", this.props.currentUser)
             });
     };
 
@@ -76,7 +79,7 @@ class ApplicationViews extends Component {
                 this.setState({
                     buildItems: newItem
                 });
-                console.log("new item", item);
+                console.log("new item from app views", item);
                 // sessionStorage.setItem(
                 //     "userID", user.id
             })
@@ -107,28 +110,28 @@ class ApplicationViews extends Component {
             })
     };
 
-    updateItem = (updatedItem) => {
-        console.log(updatedItem.id)
-        return ApiManager.updateListItem(updatedItem)
-            .then(() => ApiManager.getAllItems())
-            .then(buildItems => {
-                this.props.history.push("/buildItems");
-                this.setState({
-                    buildItems: buildItems
-                })
-            })
-    };
+    // updateItem = (updatedItem) => {
+    //     console.log(updatedItem.id)
+    //     return ApiManager.updateListItem(updatedItem)
+    //         .then(() => ApiManager.getAllItems())
+    //         .then(buildItems => {
+    //             this.setState({
+    //                 buildItems: buildItems
+    //             })
+    //             this.props.history.push("/buildItems");
+    //         })
+    // };
 
     componentDidMount() {
-        const newState = {};
-        ApiManager.getAllItems()
-            .then(items => {
-                console.log("items", items);
-                newState.buildItems = items
-            })
-            .then(() => this.setState(newState))
-    }
+        // const newState = {};
 
+        // ApiManager.getAllItems()
+        //     .then(items => {
+        //         console.log("items", items);
+        //         newState.buildItems = items
+        //     })
+        // .then(() => this.setState(newState))
+    }
 
     render() {
         // console.log("AppViews render");
@@ -136,7 +139,9 @@ class ApplicationViews extends Component {
             <React.Fragment>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/signup" component={SignupForm} />
-                <Route exact path="/login" component={LoginForm} />
+                <Route exact path="/login" render={(props) => {
+                    return <LoginForm setUser={this.props.setUser} {...props} />
+                }} />
                 <Route exact path="/search" render={(props) => {
                     return <Search getSearchResults={this.getSearchResults} {...props} />
                 }} />

@@ -3,7 +3,7 @@ const remoteURL = "http://localhost:5002"
 export default {
 
     get(userName) {
-        return fetch(`${remoteURL}/users?user_name=${userName}`).then(e => e.json())
+        return fetch(`${remoteURL}/users?userName=${userName}`).then(e => e.json())
     },
 
     getAll() {
@@ -32,6 +32,10 @@ export default {
 
     getAllItems() {
         return fetch(`${remoteURL}/buildItems`).then(e => e.json())
+    },
+
+    getAllItemsById(id) {
+        return fetch(`${remoteURL}/buildItems?userId=${id}`).then(e => e.json())
     },
 
     addListItem(listItem) {

@@ -21,9 +21,18 @@ export default class SignupForm extends Component {
                     currentUser: user
                 })
                 console.log("new user", newUser);
-                sessionStorage.setItem(
-                    "userID", newUser.id
-                )
+                // sessionStorage.setItem(
+                // this is new below
+                // sessionStorage.setItem(
+                //     "credentials",
+                //     JSON.stringify({
+                //         id: user.id,
+                //         userName: user.userName,
+                //         password: user.password
+                //     })
+                // )
+                // this is new above
+                // )
             })
         // .then(() => LoginManager.getAll('users'))
         // .then(newUser => {
@@ -53,9 +62,29 @@ export default class SignupForm extends Component {
         };
         console.log("user", user)
 
-        this.addUser(user).then(() => this.props.history.push('/'));
-        return user
+        this.addUser(user).then(() => {
+            this.props.history.push('/login');
+            // return user
+        });
     };
+
+    // this.addUser(user).then(() => {
+    //     if (user.length > 0) {
+    //         sessionStorage.setItem(
+    //             'credentials',
+    //             JSON.stringify({
+    //                 firstLastName: user[0].firstLastName,
+    //                 email: user[0].email,
+    //                 userName: user[0].userName,
+    //                 password: user[0].password
+    //             })
+    //         );
+    //         this.props.history.push('/');
+    //     } else {
+    //         alert("Please sign up");
+    //     }
+    // });
+
 
     componentDidMount() {
         const newState = {};
