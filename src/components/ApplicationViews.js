@@ -86,8 +86,9 @@ class ApplicationViews extends Component {
     };
 
     updateItem = (editedListObject) => {
+        const user = JSON.parse(sessionStorage.getItem("credentials"))
         return ApiManager.updateListItem(editedListObject)
-            .then(() => ApiManager.getAllItems())
+            .then(() => ApiManager.getAllItemsById(user.id))
             .then(buildItems => {
                 this.props.history.push("/buildItems");
                 this.setState({
