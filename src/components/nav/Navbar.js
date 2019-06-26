@@ -19,6 +19,10 @@ class Navbar extends Component {
         }));
     }
 
+    logout() {
+        sessionStorage.clear();
+    }
+
 
     render() {
         return (
@@ -38,11 +42,11 @@ class Navbar extends Component {
                                 <Link className="nav-item nav-link active" to="/signup">Sign Up</Link>
                             </li>
                             <Link to="/login" className="nav-item nav-link active" onClick={this.toggle}>Log In</Link>
-                            <li className="nav-item">
+                            {!!this.props.currentUser ? <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/buildItems">Build List</Link>
-                            </li>
+                            </li> : null}
                             {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /> */}
-                            <a className="nav-item nav-link" href="#">Log Out</a>
+                            <Link to="/" className="nav-item nav-link active" onClick={this.logout}>Log Out</Link>
                         </div>
                     </div>
                 </nav>

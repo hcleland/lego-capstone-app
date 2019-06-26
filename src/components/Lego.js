@@ -10,7 +10,7 @@ class Lego extends Component {
     }
 
     setUser = (user) => {
-        sessionStorage.setItem("credential", JSON.stringify(user));
+        sessionStorage.setItem("credentials", JSON.stringify(user));
 
         this.setState({
             currentUser: user
@@ -21,7 +21,7 @@ class Lego extends Component {
         return (
             <React.Fragment>
                 <Navbar setUser={this.setUser} currentUser={this.state.currentUser} modal={this.state.modal} />
-                <ApplicationViews setUser={this.setUser} activeUser={this.state.currentUser} />
+                <ApplicationViews setUser={this.setUser} currentUser={this.state.currentUser} />
             </React.Fragment>
         )
     }

@@ -9,13 +9,49 @@ class BuildItem extends Component {
 
     state = {
         saveDisabled: false,
+        buildItems: []
     }
 
-    handleAdd = result => {
-        this.setState({ disabled: true })
-        ApiManager.addListItem(result)
-            .then(this.props.getBuildItems)
-    }
+    // handleAdd = result => {
+    //     this.setState({ saveDisabled: true })
+    //     ApiManager.addListItem(result)
+    //         .then(this.props.getBuildItems)
+    // }
+
+    handleAdd = newResultItem => {
+        let credentials = sessionStorage.getItem("credentials")
+        const parsedObj = JSON.parse(credentials)
+        console.log(parsedObj.id);
+        // console.log(parseInt(sessionStorage.getItem(credentials.id)))
+        // const storedObj = JSON.parse(storedData);
+
+        const newObj = {
+            set_num: newResultItem.set_num,
+            name: newResultItem.name,
+            year: newResultItem.year,
+            theme_id: newResultItem.theme_id,
+            num_parts: newResultItem.num_parts,
+            moc_img_url: newResultItem.moc_img_url,
+            moc_url: newResultItem.moc_url,
+            designer_name: newResultItem.designer_name,
+            designer_url: newResultItem.designer_url,
+            textAreaValue: "",
+            isBuilt: false,
+            userId: parsedObj.id
+        }
+
+        ApiManager.addListItem(newObj)
+            .then(() => ApiManager.getAllItems())
+            .then(results => {
+                const filteredBuildItems = results.filter(buildItem => {
+                    return parsedObj.id === buildItem.userId;
+                });
+                this.setState({
+                    buildItems: filteredBuildItems
+                });
+            });
+    };
+
 
 
     // handleClick = (event) => {
@@ -49,7 +85,7 @@ class BuildItem extends Component {
                                             </CardText>
                                             <Button onClick={() => this.props.getDetails(this.props.result.set_num)} tag={Link} to="/searchDetails" color="primary">Details</Button>
                                             <div className="divider" />
-                                            <Button disabled={this.state.disabled} onClick={() => this.handleAdd(this.props.result)} color="danger">{(this.state.disabled) ? "Added to List" : "Add to List"}</Button>
+                                            <Button disabled={this.state.saveDisabled} onClick={() => this.handleAdd(this.props.result)} color="danger">{(this.state.saveDisabled) ? "Added to List" : "Add to List"}</Button>
                                         </CardBody>
                                     </Card>
                                     <p></p>

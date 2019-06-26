@@ -6,6 +6,9 @@ import ListItem from "./ListItem";
 
 class BuildList extends Component {
 
+    componentDidMount() {
+        this.props.getBuildItems()
+    }
 
     render() {
 
