@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Label, Input, FormGroup, Button, CardImg } from "reactstrap";
 import { Link } from 'react-router-dom';
 import "./BuildList.css";
-import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 
 class ListItem extends Component {
 
     state = {
         // buildItems: [],
         saveDisabled: false,
-        // textAreaValue: "",
+        textAreaValue: "",
         // isBuilt: false
     }
 
@@ -35,18 +34,18 @@ class ListItem extends Component {
         evt.preventDefault()
         const editedItem = {
             id: this.props.buildItem.id,
-            textAreaValue: this.props.textAreaValue,
+            textAreaValue: this.state.textAreaValue,
             isBuilt: this.props.isBuilt,
-            // set_num: this.props.set_num,
-            // name: this.props.name,
-            // year: this.props.year,
-            // theme_id: this.props.theme_id,
-            // num_parts: this.props.num_parts,
-            // moc_img_url: this.props.moc_img_url,
-            // moc_url: this.props.moc_url,
-            // designer_name: this.props.designer_name,
-            // designer_url: this.props.designer_url,
-            // userId: this.props.userId
+            set_num: this.props.set_num,
+            name: this.props.name,
+            year: this.props.year,
+            theme_id: this.props.theme_id,
+            num_parts: this.props.num_parts,
+            moc_img_url: this.props.moc_img_url,
+            moc_url: this.props.moc_url,
+            designer_name: this.props.designer_name,
+            designer_url: this.props.designer_url,
+            userId: this.props.userId
         };
         console.log(editedItem.id)
         this.props.updateItem(editedItem)

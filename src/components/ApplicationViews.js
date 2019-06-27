@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 import React, { Component } from "react";
+import { Alert } from 'reactstrap';
 import ApiManager from "../modules/ApiManager";
 import Landing from "./landing/Landing";
 import SignupForm from "./user/SignupForm";
@@ -10,8 +11,9 @@ import SearchResults from "./search/SearchResults";
 import SearchDetails from "./search/SearchDetails";
 import BuildList from "./buildList/BuildList";
 import BuildItem from "./buildList/BuildItem";
-import ListItem from "./buildList/ListItem";
-import BrickPic from "./search/BrickPic";
+// import AlertModal from "./search/AlertModal"
+// import ListItem from "./buildList/ListItem";
+// import BrickPic from "./search/BrickPic";
 
 
 class ApplicationViews extends Component {
@@ -21,17 +23,35 @@ class ApplicationViews extends Component {
         searchResults: [],
         searchDetails: [],
         buildItems: [],
-        currentUser: {}
-    }
+        currentUser: {},
+    };
+
+
 
     isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
 
     getSearchResults = (searchInput) => {
         ApiManager.getAlternate(searchInput)
             .then(results => {
-                this.setState({
-                    searchResults: results.results
-                });
+                if (results.count === 0) {
+                    //                 return (
+                    //                     <Alert color="success">
+                    //                         <h4 className="alert-heading">Well done!</h4>
+                    //                         <p>Aww yeah, you successfully read this important alert message. This example text is going
+                    //   to run a bit longer so that you can see how spacing within an alert works with this kind
+                    //       of content.</p>
+                    //                         <hr />
+                    //                         <p className="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                    //                     </Alert>
+                    //                 )
+                    alert("none found")
+
+                } else {
+                    this.setState({
+                        searchResults: results.results
+                    })
+                    this.props.history.push("/searchResults")
+                };
                 console.log("SEARCH RESULTS", results);
             });
     };
@@ -86,8 +106,9 @@ class ApplicationViews extends Component {
     };
 
     updateItem = (editedListObject) => {
+        const user = JSON.parse(sessionStorage.getItem("credentials"))
         return ApiManager.updateListItem(editedListObject)
-            .then(() => ApiManager.getAllItems())
+            .then(() => ApiManager.getAllItemsById(user.id))
             .then(buildItems => {
                 this.props.history.push("/buildItems");
                 this.setState({
@@ -143,10 +164,18 @@ class ApplicationViews extends Component {
                     return <LoginForm setUser={this.props.setUser} {...props} />
                 }} />
                 <Route exact path="/search" render={(props) => {
-                    return <Search getSearchResults={this.getSearchResults} {...props} />
+                    return (
+                        <>
+                            <Search getSearchResults={this.getSearchResults} {...props} />
+                        </>
+                    )
                 }} />
                 <Route exact path="/searchResults" render={(props) => {
-                    return <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} {...props} />
+                    return (
+                        <>
+                            <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} {...props} />
+                        </>
+                    )
                 }} />
                 <Route exact path="/searchDetails" render={(props) => {
                     return (
