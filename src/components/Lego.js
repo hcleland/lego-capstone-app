@@ -17,10 +17,18 @@ class Lego extends Component {
         })
     }
 
+    logout = () => {
+        sessionStorage.clear();
+        this.setState({
+            currentUser: null
+        })
+    }
+
+
     render() {
         return (
             <React.Fragment>
-                <Navbar setUser={this.setUser} currentUser={this.state.currentUser} modal={this.state.modal} />
+                <Navbar setUser={this.setUser} currentUser={this.state.currentUser} modal={this.state.modal} logout={this.logout} />
                 <ApplicationViews setUser={this.setUser} currentUser={this.state.currentUser} />
             </React.Fragment>
         )

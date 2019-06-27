@@ -19,12 +19,10 @@ class Navbar extends Component {
         }));
     }
 
-    logout() {
-        sessionStorage.clear();
-    }
 
 
     render() {
+        console.log("current user", this.props.currentUser)
         return (
             <div id="navbar">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,18 +33,37 @@ class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
                             <a className="nav-item nav-link active" href="/">Home <span className="sr-only"></span></a>
+
                             <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/search">Search</Link>
                             </li>
-                            <li className="nav-item">
+
+
+                            {!this.props.currentUser ? <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/signup">Sign Up</Link>
-                            </li>
-                            <Link to="/login" className="nav-item nav-link active" onClick={this.toggle}>Log In</Link>
+                            </li> : null}
+
+                            {/* <li className="nav-item">
+                                <Link className="nav-item nav-link active" to="/signup">Sign Up</Link>
+                            </li> */}
+
+                            {!this.props.currentUser ? <li className="nav-item">
+                                <Link className="nav-item nav-link active" to="/login" onClick={this.toggle}>Log In</Link>
+                            </li> : null}
+
+                            {/* <Link to="/login" className="nav-item nav-link active" onClick={this.toggle}>Log In</Link> */}
+
                             {!!this.props.currentUser ? <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/buildItems">Build List</Link>
                             </li> : null}
+
                             {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} /> */}
-                            <Link to="/" className="nav-item nav-link active" onClick={this.logout}>Log Out</Link>
+
+                            {!!this.props.currentUser ? <li className="nav-item">
+                                <Link className="nav-item nav-link active" to="/" onClick={this.props.logout}>Logout</Link>
+                            </li> : null}
+
+                            {/* <Link to="/" className="nav-item nav-link active" onClick={this.logout}>Log Out</Link> */}
                         </div>
                     </div>
                 </nav>

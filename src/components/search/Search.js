@@ -43,7 +43,7 @@ class Search extends Component {
                             <Input type="text" required name="inputSet" onChange={this.handleFieldChange} id="searchInput" placeholder="" />
                         </Col>
                         {/* <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label> */}
-                        <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} tag={Link} to="/searchResults" color="success">Search</Button></Label>
+                        <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} color="success">Search</Button></Label>
                     </div>
                 </Form>
             </React.Fragment>
