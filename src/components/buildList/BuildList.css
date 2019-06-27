@@ -19,6 +19,12 @@ div .buildItem {
     border-radius: 3px;
     padding: 5px 10px;
     text-transform: uppercase;
+    outline: none;
+  }
+
+  .customBtnEdit:focus, .customBtnEdit:active {
+    outline: none !important;
+    box-shadow: none;
   }
 
   .customBtnDelete {

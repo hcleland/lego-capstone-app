@@ -24,7 +24,8 @@ class ApplicationViews extends Component {
         searchDetails: [],
         buildItems: [],
         currentUser: {},
-        searchedSet: ""
+        searchedSet: "",
+        setNotFound: false
     };
 
 
@@ -46,12 +47,13 @@ class ApplicationViews extends Component {
                     //                         <p className="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
                     //                     </Alert>
                     //                 )
-                    alert("none found")
+                    this.setState({ setNotFound: true })
 
                 } else {
                     this.setState({
                         searchResults: results.results,
-                        searchedSet: searchInput
+                        searchedSet: searchInput,
+                        setNotFound: false
                     }, () => {
                         this.props.history.push("/searchResults")
                     })
@@ -124,14 +126,14 @@ class ApplicationViews extends Component {
 
     deleteItem = (id) => {
         const newState = {};
+        const user = JSON.parse(sessionStorage.getItem("credentials"))
         ApiManager.deleteListItem(id)
-            .then(ApiManager.getAllItems)
+            .then(() => ApiManager.getAllItemsById(user.id))
             .then(buildItems => {
-                console.log("build Items", buildItems);
                 newState.buildItems = buildItems
             })
             .then(() => {
-                this.props.history.push("/buildItems")
+                // this.props.history.push("/buildItems")
                 this.setState(newState)
             })
     };
@@ -171,7 +173,7 @@ class ApplicationViews extends Component {
                 <Route exact path="/search" render={(props) => {
                     return (
                         <>
-                            <Search getSearchResults={this.getSearchResults} {...props} />
+                            <Search getSearchResults={this.getSearchResults} setNotFound={this.state.setNotFound} {...props} />
                         </>
                     )
                 }} />
@@ -192,7 +194,7 @@ class ApplicationViews extends Component {
                 <Route path="/buildItems" render={props => {
                     return (
                         <>
-                            <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} deleteItem={this.deleteItem} updateItem={this.updateItem} />
+                            <BuildList {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} deleteItem={this.deleteItem} updateItem={this.updateItem} currentUser={this.props.currentUser} />
                             {/* <ListItem {...props} buildItems={this.state.buildItems} getBuildItems={this.getBuildItems} /> */}
                         </>
                     )

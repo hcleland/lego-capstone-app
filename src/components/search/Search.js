@@ -44,6 +44,7 @@ class Search extends Component {
                         {/* <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label> */}
                         <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} color="success">Search</Button></Label>
                     </div>
+                    {this.props.setNotFound ? <p>true</p> : null}
                 </Form>
             </React.Fragment>
         )
