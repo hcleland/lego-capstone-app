@@ -19,6 +19,7 @@ class BuildItem extends Component {
     // }
 
     handleAdd = newResultItem => {
+        this.setState({ saveDisabled: true })
         let credentials = sessionStorage.getItem("credentials")
         const parsedObj = JSON.parse(credentials)
         console.log(parsedObj.id);
@@ -83,9 +84,12 @@ class BuildItem extends Component {
                                             <CardText>
                                                 Number of bricks used: {this.props.result.num_parts}
                                             </CardText>
+
                                             <Button onClick={() => this.props.getDetails(this.props.result.set_num)} tag={Link} to="/searchDetails" color="primary">Details</Button>
+
                                             <div className="divider" />
-                                            <Button disabled={this.state.saveDisabled} onClick={() => this.handleAdd(this.props.result)} color="danger">{(this.state.saveDisabled) ? "Added to List" : "Add to List"}</Button>
+
+                                            <Button disabled={this.state.saveDisabled} onClick={() => this.handleAdd(this.props.result)} color="danger">{(this.state.saveDisabled) ? "On My List" : "Add to Build List"}</Button>
                                         </CardBody>
                                     </Card>
                                     <p></p>

@@ -27,15 +27,16 @@ class SearchResults extends Component {
     render() {
         return (
             <Form>
-                <div className="searchForm">
+                {/* <div className="searchForm">
                     <Label for="inputSet" sm={4}>Lego Set Number</Label>
                     <Col sm={10}>
                         <Input type="text" required name="inputSet" onChange={this.handleFieldChange} id="searchInput" placeholder="" />
                     </Col>
-                    {/* <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label> */}
+                    <Label for="search" sm={4}><Button onClick={this.props.getSearchResults} tag={Link} to="/searchResults" color="success">Search</Button></Label>
                     <Label for="search" sm={4}><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} tag={Link} to="/searchResults" color="success">Search</Button></Label>
-                </div>
+                </div> */}
                 <div>
+                    <h1>Search Results for Lego Set Number: {this.props.searchedSet}</h1>
                     {
                         this.props.searchResults.map((result) => {
                             return <BuildItem key={result.set_num} result={result} {...this.props} />

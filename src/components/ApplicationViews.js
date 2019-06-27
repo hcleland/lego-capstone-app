@@ -24,6 +24,7 @@ class ApplicationViews extends Component {
         searchDetails: [],
         buildItems: [],
         currentUser: {},
+        searchedSet: ""
     };
 
 
@@ -33,6 +34,7 @@ class ApplicationViews extends Component {
     getSearchResults = (searchInput) => {
         ApiManager.getAlternate(searchInput)
             .then(results => {
+                console.log(searchInput);
                 if (results.count === 0) {
                     //                 return (
                     //                     <Alert color="success">
@@ -48,11 +50,14 @@ class ApplicationViews extends Component {
 
                 } else {
                     this.setState({
-                        searchResults: results.results
+                        searchResults: results.results,
+                        searchedSet: searchInput
+                    }, () => {
+                        this.props.history.push("/searchResults")
                     })
-                    this.props.history.push("/searchResults")
                 };
                 console.log("SEARCH RESULTS", results);
+                console.log("search Input at the end", searchInput)
             });
     };
 
@@ -173,7 +178,7 @@ class ApplicationViews extends Component {
                 <Route exact path="/searchResults" render={(props) => {
                     return (
                         <>
-                            <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} {...props} />
+                            <SearchResults searchResults={this.state.searchResults} getDetails={this.getDetails} addItem={this.addItem} getBuildItems={this.getBuildItems} searchedSet={this.state.searchedSet} {...props} />
                         </>
                     )
                 }} />

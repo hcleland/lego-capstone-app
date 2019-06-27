@@ -3,7 +3,6 @@ import "./searchForm.css";
 import {
     Form, Col, Button, Input, Label
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 class Search extends Component {
     state = {
@@ -22,12 +21,12 @@ class Search extends Component {
 
     handleFieldChange = evt => {
         console.log("evt", evt)
-        console.log("state", this.state.searchInput)
         // this.setState({ input: evt.target.value });
         const stateToChange = {};
         stateToChange[evt.target.id] =
             evt.target.value;
         this.setState(stateToChange);
+        console.log("input state", this.props.searchInput)
     };
 
 
