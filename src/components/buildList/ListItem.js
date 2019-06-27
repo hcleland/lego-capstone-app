@@ -72,13 +72,13 @@ class ListItem extends Component {
                                 <Label for="exampleText">Notes:</Label>
                                 <Input type="textarea" name="text" id="textAreaValue" onChange={this.handleFieldChange} defaultValue={this.props.buildItem.textAreaValue} />
                             </CardText>
-                            <FormGroup check>
+                            {/* <FormGroup check>
                                 <Label check>
                                     <Input type="checkbox" id="Built" checked={this.props.buildItem.isBuilt} onChange={this.handleCheck} />{' '}
                                     I Built This!
         </Label>
-                                {/* <Button onClick={() => this.getInventory(result.set_num)} color="primary">Edit</Button> */}
-                            </FormGroup>
+                                <Button onClick={() => this.getInventory(result.set_num)} color="primary">Edit</Button>
+                            </FormGroup> */}
 
                             <p></p>
                             <Button tag={Link} to="/buildItems" className="customBtnEdit" onClick={(evt) => this.updateExistingItem(evt)}>Save</Button>

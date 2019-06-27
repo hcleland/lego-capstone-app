@@ -14,7 +14,7 @@ class BuildList extends Component {
 
         return (
             <div>
-                <h1>My Build List</h1>
+                <h1>{this.props.currentUser.firstLastName}'s Build List</h1>
                 <div className="buildList">
                     < section >
                         {
