@@ -18,12 +18,11 @@ div .buildItem {
     border: 2px solid black;
     border-radius: 3px;
     padding: 5px 10px;
-    text-transform: uppercase;
     outline: none;
   }
 
   .customBtnEdit:focus, .customBtnEdit:active {
-    outline: none !important;
+    /* outline: none !important; */
     box-shadow: none;
   }
 
@@ -33,7 +32,6 @@ div .buildItem {
     border: 2px solid white;
     border-radius: 3px;
     padding: 5px 10px;
-    text-transform: uppercase; 
   }
 
   #userHeader {

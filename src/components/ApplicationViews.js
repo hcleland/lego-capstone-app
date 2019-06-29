@@ -1,7 +1,6 @@
 import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 import React, { Component } from "react";
-import { Alert } from 'reactstrap';
 import ApiManager from "../modules/ApiManager";
 import Landing from "./landing/Landing";
 import SignupForm from "./user/SignupForm";
@@ -11,7 +10,7 @@ import SearchResults from "./search/SearchResults";
 import SearchDetails from "./search/SearchDetails";
 import BuildList from "./buildList/BuildList";
 import BuildItem from "./buildList/BuildItem";
-// import AlertModal from "./search/AlertModal"
+import Alert from "./search/Alert";
 // import ListItem from "./buildList/ListItem";
 // import BrickPic from "./search/BrickPic";
 
@@ -24,6 +23,7 @@ class ApplicationViews extends Component {
         searchDetails: [],
         buildItems: [],
         currentUser: {},
+        searchInput: " ",
         searchedSet: "",
         setNotFound: false
     };
@@ -37,7 +37,11 @@ class ApplicationViews extends Component {
             .then(results => {
                 console.log(searchInput);
                 if (results.count === 0) {
-                    //                 return (
+
+                    // return (
+                    //     <Alert />
+                    // )
+
                     //                     <Alert color="success">
                     //                         <h4 className="alert-heading">Well done!</h4>
                     //                         <p>Aww yeah, you successfully read this important alert message. This example text is going
@@ -46,8 +50,10 @@ class ApplicationViews extends Component {
                     //                         <hr />
                     //                         <p className="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
                     //                     </Alert>
-                    //                 )
-                    this.setState({ setNotFound: true })
+
+                    this.setState({
+                        setNotFound: true
+                    })
 
                 } else {
                     this.setState({
@@ -117,10 +123,11 @@ class ApplicationViews extends Component {
         return ApiManager.updateListItem(editedListObject)
             .then(() => ApiManager.getAllItemsById(user.id))
             .then(buildItems => {
-                this.props.history.push("/buildItems");
                 this.setState({
                     buildItems: buildItems
                 })
+                // this.props.history.push("/buildItems");
+                window.scrollTo(0, 10);
             })
     };
 
@@ -137,18 +144,6 @@ class ApplicationViews extends Component {
                 this.setState(newState)
             })
     };
-
-    // updateItem = (updatedItem) => {
-    //     console.log(updatedItem.id)
-    //     return ApiManager.updateListItem(updatedItem)
-    //         .then(() => ApiManager.getAllItems())
-    //         .then(buildItems => {
-    //             this.setState({
-    //                 buildItems: buildItems
-    //             })
-    //             this.props.history.push("/buildItems");
-    //         })
-    // };
 
     componentDidMount() {
         // const newState = {};
@@ -177,6 +172,7 @@ class ApplicationViews extends Component {
                         </>
                     )
                 }} />
+                <Route exact path="/alert" component={Alert} />
                 <Route exact path="/searchResults" render={(props) => {
                     return (
                         <>
@@ -205,7 +201,6 @@ class ApplicationViews extends Component {
                 }}
                 />
                 <Route exact path="/buildItems/:buildItemId(\d+)" render={(props) => {
-                    // Find the animal with the id of the route parameter
                     let buildItem = this.state.buildItems.find(buildItem =>
                         buildItem.id === parseInt(props.match.params.buildItemId)
                     )

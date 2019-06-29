@@ -3,7 +3,6 @@ import "./searchForm.css";
 import "./searchResults.css";
 import BuildItem from "../buildList/BuildItem";
 import { Form, Label, Col, Input, Button } from "reactstrap";
-import { Link } from "react-router-dom";
 
 class SearchResults extends Component {
     state = {
@@ -22,7 +21,6 @@ class SearchResults extends Component {
 
         this.props.addListItem(newItem)
     }
-
 
     render() {
         return (
