@@ -29,6 +29,7 @@ class Search extends Component {
     render() {
         return (
             <React.Fragment>
+                <h4 className="searchHeader">Search for other creations to build with bricks from your Lego set</h4>
                 <Form inline className="searchForm">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="inputSet" className="mr-sm-2">Lego Set Number</Label>
@@ -36,7 +37,7 @@ class Search extends Component {
                     </FormGroup>
                     <Label for="search"><Button onClick={() => this.props.getSearchResults(this.state.searchInput)} color="success">Search</Button></Label>
                     {this.props.setNotFound ?
-                        <h3>No Results Found<img src="https://media.makeameme.org/created/ahhh-i-stepped.jpg" className="alertImg"></img></h3> : null}
+                        <h3 className="alertText">No Results Found. Try Another Set.<img src="https://media.makeameme.org/created/ahhh-i-stepped.jpg" className="alertImg"></img></h3> : null}
 
 
                     {/* <div className="searchForm">
