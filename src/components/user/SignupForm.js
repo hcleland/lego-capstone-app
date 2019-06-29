@@ -129,7 +129,7 @@ export default class SignupForm extends Component {
                         </FormGroup>
                         <FormGroup check row>
                             <Col sm={{ size: 10, offset: 2 }}>
-                                <Button onClick={this.saveNewUser}>Submit</Button>
+                                <Button onClick={this.saveNewUser} color="danger">Submit</Button>
                             </Col>
                         </FormGroup>
                     </Form>

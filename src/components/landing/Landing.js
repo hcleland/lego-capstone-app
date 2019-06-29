@@ -19,7 +19,7 @@ export default class Landing extends Component {
                                 <hr className="my-2" />
                                 <p></p>
                                 <p className="lead">
-                                    <Button tag={Link} to="/search" className="customBtnLanding">Start Building</Button>
+                                    <Button tag={Link} to="/signup" className="customBtnLanding">Start Building</Button>
                                 </p>
                             </Col>
                         </Row>

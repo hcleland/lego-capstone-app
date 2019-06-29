@@ -57,7 +57,7 @@ export default class LoginForm extends Component {
                         </FormGroup>
                         <FormGroup check row>
                             <Col sm={{ size: 10, offset: 2 }}>
-                                <Button onClick={this.handleLogin}>Submit</Button>
+                                <Button onClick={this.handleLogin} color="primary">Submit</Button>
                             </Col>
                         </FormGroup>
                     </Form>

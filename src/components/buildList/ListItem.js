@@ -81,17 +81,17 @@ class ListItem extends Component {
                             </FormGroup> */}
 
                             <p></p>
-                            <Button tag={Link} to="/buildItems" className="customBtnEdit" onClick={(evt) => this.updateExistingItem(evt)}>Save</Button>
+                            <Button tag={Link} to="/buildItems" className="customBtnEdit" onClick={(evt) => this.updateExistingItem(evt)}>Save Notes</Button>
 
                             <div className="divider" />
-                            <Button onClick={
+                            <Button className="customBtnDelete" onClick={
                                 () => {
                                     this.setState(
                                         { saveDisabled: true },
                                         () => this.props.deleteItem(this.props.buildItem.id)
                                     )
                                 }
-                            }>Delete</Button>
+                            }>Remove from List</Button>
 
                         </CardBody>
                     </div>
