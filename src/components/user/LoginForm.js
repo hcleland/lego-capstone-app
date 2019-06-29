@@ -31,7 +31,7 @@ export default class LoginForm extends Component {
                 //         password: result[0].password
                 //     })
                 // )
-                this.props.history.push("/");
+                this.props.history.push("/search");
             } else {
                 alert("Please sign up");
             }

@@ -20,6 +20,9 @@ export default class Landing extends Component {
                                 <p></p>
                                 <p className="lead">
                                     <Button tag={Link} to="/signup" className="customBtnLanding">Start Building</Button>
+
+                                    {/* {!!this.props.currentUser ? <Button tag={Link} to="/search" className="customBtnLanding">Start Building</Button> :
+                                        <Button tag={Link} to="/signup" className="customBtnLanding">Start Building</Button>} */}
                                 </p>
                             </Col>
                         </Row>

@@ -31,9 +31,8 @@ class Navbar extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div className="navbar-nav">
+                        <div className="navbar-nav w-100">
                             <a className="nav-item nav-link active" href="/">Home <span className="sr-only"></span></a>
-
                             <li className="nav-item">
                                 <Link className="nav-item nav-link active" to="/search">Search</Link>
                             </li>
@@ -64,6 +63,10 @@ class Navbar extends Component {
                             </li> : null}
 
                             {/* <Link to="/" className="nav-item nav-link active" onClick={this.logout}>Log Out</Link> */}
+
+
+                            {!!this.props.currentUser ? <li className="nav-item nav-link ml-auto active">Welcome {this.props.currentUser.firstLastName}</li> : null}
+
                         </div>
                     </div>
                 </nav>
